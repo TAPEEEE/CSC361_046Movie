@@ -3,6 +3,11 @@ const router = express.Router()
 const data = require('./data/movie')
 const path = require("path")
 const session = require('express-session');
+const bodyParser = require('body-parser');
+
+router.use(bodyParser.urlencoded({
+    extended: false
+}))
 
 
 router.get('/', (req, res) => {
@@ -45,19 +50,23 @@ function user(username, password) {
 }
 
 router.get('/login', function (req, res) {
-    const _username = req.query.username
-    const _password = req.query.password
+    res.sendFile(path.join(__dirname, "/public/views/login.html"));
+})
 
+router.post('/login', function (req, res) {
+    const _username = req.body.username
+    const _password = req.body.password
+    
     if (req.session.isLoggedIn != null && req.session.isLoggedIn == true) {
         res.redirect("/")
     }
 
-    if (user(req.query.username, req.query.password) == true) {
+    if (user(req.body.username, req.body.password) == true) {
         req.session.username = req.query.username
         req.session.isLoggedIn = true
         res.redirect("/")
     } else {
-        res.send("หน้า Login")
+        res.sendFile(path.join(__dirname, "/public/views/login.html"));
     }
 })
 
@@ -76,9 +85,9 @@ router.get('/api/movie/:id', (req, res) => {
     }
 })
 
-router.get('/logout', function (req, res) {
+router.post('/logout', function (req, res) {
     req.session.destroy(); //ทิ้ง session
-    res.redirect("/login");
+    res.redirect("/");
     console.log("TEST")
 })
 

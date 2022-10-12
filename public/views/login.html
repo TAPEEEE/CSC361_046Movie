@@ -36,15 +36,15 @@
                     <a class="nav-link" href="/login">เข้าสู่ระบบ</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <button class="btn btn-danger" type="submit" href="/logout">Logout / ออกจากระบบ</button>
+            <form class="d-flex" role="search" action="/logout" method="post">
+              <button class="btn btn-danger" type="submit">Logout / ออกจากระบบ</button>
             </form>
         </div>
     </div>
 </nav>
 
-  <div class="container">
-    <form action="/authen" method="post" class="bg-white px-5 py-5 rounded-3">
+  <div class="container mt-5">
+    <form action="/login" method="post" class="bg-white px-5 py-5 rounded-3">
       <div class="form-group my-2">
         <label for="username">Username:</label>
         <input type="text" name="username" id="username" class="form-control">

@@ -2,11 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const router = require('./route')
-var bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({
-    extended: false
-}))
 
 app.use(router)
 app.use(express.static("public"));
