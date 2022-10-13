@@ -1,6 +1,5 @@
 # CSC361 Movie Assignment
 
-### How to run project
 ## > npm run dev
 
 
